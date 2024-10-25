@@ -31,7 +31,7 @@ function expectNoDeprecations() {
 
     // See @glimmer/util's deprecation() implementation
     console.warn = (...args) => {
-      if (args[0]?.includes('DEPRECATION')) {
+      if (args[0] && args[0].includes('DEPRECATION')) {
         loggedDeprecations.push(args[0]);
       }
     };
