@@ -7,7 +7,7 @@ const path = require('path');
 const hasOptionalChain = process.versions.node.split('.')[0] !== '12';
 
 function ext(snapshotExtension) {
-  return hasOptionalChain ? `${snapshotExtension}.newer` : `.node12${snapshotExtension}`;
+  return hasOptionalChain ? `${snapshotExtension}.newer` : `${snapshotExtension}.node12`;
 }
 
 module.exports = {
