@@ -23,6 +23,7 @@ expect.addSnapshotSerializer({
   },
 });
 
+// eslint-disable-next-line no-console
 const originalWarn = console.warn;
 let loggedDeprecations = [];
 function expectNoDeprecations() {
@@ -30,6 +31,7 @@ function expectNoDeprecations() {
     loggedDeprecations = [];
 
     // See @glimmer/util's deprecation() implementation
+    // eslint-disable-next-line no-console
     console.warn = (...args) => {
       if (args[0] && args[0].includes('DEPRECATION')) {
         loggedDeprecations.push(args[0]);
@@ -38,6 +40,7 @@ function expectNoDeprecations() {
   });
   afterEach(() => {
     expect(loggedDeprecations).toHaveLength(0);
+    // eslint-disable-next-line no-console
     console.warn = originalWarn;
   });
 }
