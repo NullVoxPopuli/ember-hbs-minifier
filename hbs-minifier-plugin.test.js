@@ -6,7 +6,7 @@
 const DEP_PREFIX = '@glimmer/syntax';
 const hasOptionalChain = process.versions.node.split('.')[0] !== '12';
 const DEPS = Object.keys(require('./package.json').devDependencies).filter(it => {
-  if (!hasOptionalChain && it.indexOf('0.92.3')) {
+  if (!hasOptionalChain && it.indexOf('0.92.3') !== -1) {
     return false;
   }
   return it.startsWith(DEP_PREFIX);
