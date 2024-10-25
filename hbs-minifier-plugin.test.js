@@ -1,12 +1,16 @@
 'use strict';
 
-/* eslint-env jest */
+/* eslint-env node,jest */
 /* eslint-disable no-inner-declarations */
 
 const DEP_PREFIX = '@glimmer/syntax';
-const DEPS = Object.keys(require('./package.json').devDependencies).filter(it =>
-  it.startsWith(DEP_PREFIX)
-);
+const hasOptionalChain = process.versions.node.split('.')[0] !== '12';
+const DEPS = Object.keys(require('./package.json').devDependencies).filter(it => {
+  if (!hasOptionalChain && it.indexOf('0.92.3')) {
+    return false;
+  }
+  return it.startsWith(DEP_PREFIX);
+});
 
 // Remove the unnecessary `loc` properties from the AST snapshots and replace
 // the `Object` prefix with the node `type`
